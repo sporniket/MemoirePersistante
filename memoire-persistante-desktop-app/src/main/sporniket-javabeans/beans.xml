@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ * <p>
+ * &copy; Copyright 2013 David Sporn
+ * </p>
+ * <hr />
+ * 
+ * <p>
+ * This file is part of <i>Memoire Persistante &#8211; app</i>.
+ * 
+ * <p>
+ * <i>Memoire Persistante &#8211; app</i> is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * <p>
+ * <i>The Sporniket Image Library &#8211; core</i> is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ * 
+ * <p>
+ * You should have received a copy of the GNU General Public License along with <i>The Sporniket Image Library &#8211; core</i>.
+ * If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * <hr />
+ * 
+ * @author David SPORN <david.sporn@sporniket.com>
+ * 
+ * @version 0-SNAPSHOT
+ * @since 0-SNAPSHOT
+ -->
+<BeanSet xmlns="http://schema.sporniket-studio.com/model/set/javabean">
+	<annotation>
+		<version>0-SNAPSHOT</version>
+	</annotation>
+	<package name="com.sporniket.libre.memoirepersistante.types.beans">
+		<bean name="PhotoResourceBean">
+			<annotation>
+				<summary>Describe a Picture, with a thumbnail, reference to the original file and other things.</summary>
+			</annotation>
+			<property name="orientation" type="java:com.sporniket.libre.images.core.metadata.Orientation"
+				mode="boundable" />
+			<property name="sourceOrientation" type="java:com.sporniket.libre.images.core.metadata.Orientation"
+				mode="basic" />
+			<property name="sourceFile" type="java:java.io.File"
+				mode="basic" />
+			<property name="thumbnail" type="java:java.io.File"
+				mode="boundable" />
+			<property name="selected" type="java:java.lang.Boolean"
+				mode="boundable" />
+			<property name="sourceDimensions" type="java:java.awt.Dimension"
+				mode="vetoable" />
+			<property name="realDimensions" type="java:java.awt.Dimension"
+				mode="vetoable" />
+			<property name="sourceDescription" type="java:java.lang.String"
+				mode="basic" />
+			<property name="Description" type="java:java.lang.String"
+				mode="boundable" />
+		</bean>
+	</package>
+</BeanSet> 

@@ -1,0 +1,175 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.sporniket.photo</groupId>
+		<artifactId>memoire-persistante</artifactId>
+		<version>15.07.00-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+<properties>
+	<version.sporniket-core>15.03.01</version.sporniket-core>
+	<version.sporniket-images>15.06.00-SNAPSHOT</version.sporniket-images>
+</properties>
+
+	<artifactId>memoire-persistante-desktop-app</artifactId>
+	<packaging>jar</packaging>
+	
+	<name>Sporniket Photobook creator 'Memoire Persistante'</name>
+	<description>A photobook creator to manage a collection of photos and create photobooks.</description>
+	<url>${url.base}/blob/master/${project.artifactId}</url>
+
+	<distributionManagement>
+		<site>
+			<id>localMvnSite</id>
+			<name>Sporniket Memoire Persistante - Desktop application</name>
+			<url>${url.base.site.deploy}/${project.artifactId}/${project.version}</url>
+		</site>
+	</distributionManagement>
+	<dependencies>
+		<!-- ===INTERNAL DEPENDENCIES=== -->
+
+		<!-- ===EXTERNAL DEPENDENCIES (non test)=== -->
+		<!-- Sporniket core libraries -->
+		<dependency>
+			<groupId>com.sporniket.core</groupId>
+			<artifactId>sporniket-core-lang</artifactId>
+			<version>${version.sporniket-core}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sporniket.core</groupId>
+			<artifactId>sporniket-core-io</artifactId>
+			<version>${version.sporniket-core}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sporniket.core</groupId>
+			<artifactId>sporniket-core-ui</artifactId>
+			<version>${version.sporniket-core}</version>
+		</dependency>
+		<!-- Sporniket images libraries -->
+		<dependency>
+			<groupId>com.sporniket.imagelib</groupId>
+			<artifactId>sporniket-imagelib-core</artifactId>
+			<version>${version.sporniket-images}</version>
+		</dependency>
+
+		<!-- ===TEST DEPENDENCIES=== -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- Version of Java supported -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven-compiler-plugin}</version>
+				<configuration>
+					<source>${version.jdk}</source>
+					<target>${version.jdk}</target>
+				</configuration>
+			</plugin>
+			<!-- gathers needed jar libs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- create a runnable jar, referencing jars in the lib folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.sporniket.libre.memoirepersistante.MemoirePersistanteApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- create a source jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- For generating javabeans -->
+			<plugin>
+				<groupId>com.sporniket.javabeans</groupId>
+				<artifactId>sporniket-javabeans-maven</artifactId>
+				<version>15.04.01</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<!-- Resources -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${version.maven-surefire-report-plugin}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${version.maven-checkstyle-plugin}</version>
+				<configuration>
+					<configLocation>../sporniket-core/checkstyle-custom.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${version.maven-pmd-plugin}</version>
+				<configuration>
+					<targetJdk>${version.jdk}</targetJdk>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>
