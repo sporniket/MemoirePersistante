@@ -36,3 +36,4 @@ bin/
 
 #temp files
 *.tmp
+*.bak
