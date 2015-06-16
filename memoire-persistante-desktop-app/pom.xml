@@ -1,6 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>com.sporniket.photo</groupId>
 		<artifactId>memoire-persistante</artifactId>
@@ -8,14 +9,15 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-<properties>
-	<version.sporniket-core>15.03.01</version.sporniket-core>
-	<version.sporniket-images>15.06.00-SNAPSHOT</version.sporniket-images>
-</properties>
+	<properties>
+		<version.sporniket-core>15.03.01</version.sporniket-core>
+		<version.sporniket-images>15.06.00-SNAPSHOT</version.sporniket-images>
+		<version.apache-jena>2.13.0</version.apache-jena>
+	</properties>
 
 	<artifactId>memoire-persistante-desktop-app</artifactId>
 	<packaging>jar</packaging>
-	
+
 	<name>Sporniket Photobook creator 'Memoire Persistante'</name>
 	<description>A photobook creator to manage a collection of photos and create photobooks.</description>
 	<url>${url.base}/blob/master/${project.artifactId}</url>
@@ -52,6 +54,14 @@
 			<groupId>com.sporniket.imagelib</groupId>
 			<artifactId>sporniket-imagelib-core</artifactId>
 			<version>${version.sporniket-images}</version>
+		</dependency>
+
+		<!-- Apache Jena (RDF API) -->
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<type>pom</type>
+			<version>${version.apache-jena}</version>
 		</dependency>
 
 		<!-- ===TEST DEPENDENCIES=== -->

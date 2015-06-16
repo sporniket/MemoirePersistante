@@ -374,7 +374,7 @@ public class PhotoBookPanel extends JScrollPane
 	{
 		return myThumbnailProvider;
 	}
-
+	
 	public List<PhotoResource> openSourceDirectory(File sourceDirectory)
 	{
 		if (!sourceDirectory.exists())
@@ -392,7 +392,8 @@ public class PhotoBookPanel extends JScrollPane
 			PhotoResource _photo = _photoIterator.next();
 			try
 			{
-				myThumbnailListPanel.add(new PhotoResourcePanel(_photo, getThumbnailProvider(), BasicUiTheme.getInstance()));
+				final PhotoResourcePanel _photoPanel = new PhotoResourcePanel(_photo, getThumbnailProvider(), BasicUiTheme.getInstance());
+				myThumbnailListPanel.add(_photoPanel);
 			}
 			catch (IOException _exception)
 			{
@@ -406,5 +407,5 @@ public class PhotoBookPanel extends JScrollPane
 		updateThumbnailListPanelLayout(myThumbnailListPanel);
 		return _photos;
 	}
-
+	
 }
