@@ -426,10 +426,13 @@ public class MemoirePersistanteApplication
 		//FIXME usual metadata would be better using Dublin Core
 		String nodeUri = "http://shema.sporniket.com/node/";
 		String metadataUri = "http://shema.sporniket.com/metadata/";
-		Property propertyTitle = _albumModel.createProperty(metadataUri, "title");
+		String metadataDcUri = "http://purl.org/dc/terms/";
+		_albumModel.setNsPrefix("dc", metadataDcUri);
+		_albumModel.setNsPrefix("spn-met", metadataUri);
+		Property propertyTitle = _albumModel.createProperty(metadataDcUri, "title");
 		Property propertyPhotos = _albumModel.createProperty(metadataUri, "photos");
 		Property propertyPhoto = _albumModel.createProperty(metadataUri, "photo");
-		Property propertyDescription = _albumModel.createProperty(metadataUri, "description");
+		Property propertyDescription = _albumModel.createProperty(metadataDcUri, "description");
 		
 		//_albumModel.
 
